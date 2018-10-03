@@ -94,6 +94,12 @@ render().constructor()
 非常容易测试.
 -. 可以与其他框架并存.
 
+## 4-1 React Developer tools
+1、可以监控state 状态.
+2、可以监控组件之间的传值.
+
+
+
 
 
 
