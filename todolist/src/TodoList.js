@@ -6,6 +6,7 @@ class TodoList extends Component{
 
     // 当props 和 state 函数发生改变，render 方法会重新执行.
     // 当父组件的render 方法执行，子组件函数render 也会被重新运行.
+
     constructor(props){
         super(props);
         this.state = {
@@ -40,11 +41,12 @@ class TodoList extends Component{
                 className="input"
                 value={this.state.inputValue}
                 onChange={this.handleInputChange}
+                ref={(input)=>{this.input = input}}
                 /> 
                 <button
                 onClick={this.handleBtnClick}
                 >提交</button>
-                <ul>
+                <ul ref={(ul)=>{this.ul = ul}}>
                     {this.getTodoItem()}
                 </ul>
             </Fragment>
@@ -56,7 +58,11 @@ class TodoList extends Component{
         // this.setState({
         //     inputValue:e.target.value
         // });
-        const value = e.target.value;
+
+        // 使用ref 获取dom,直接使用dom元素.
+        const value = this.input.value;
+
+        // const value = e.target.value;
         // ES6 最新版本写法
         this.setState(()=>({
            inputValue:value
@@ -68,8 +74,10 @@ class TodoList extends Component{
         this.setState((prevState)=>({
             list:[...prevState.list,prevState.inputValue],
             inputValue:''
-        }));
-
+        }),()=>{
+            console.log(   this.ul.querySelectorAll('div').length);
+        });
+        
         // 老的写法.
         // this.setState({
         //     list:[...this.state.list,this.state.inputValue],

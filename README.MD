@@ -122,6 +122,23 @@ TodoItem.defaultProps = {
 -.当props 和 state 函数发生改变，render 方法会重新执行.
 -. 当父组件的render 方法执行，子组件函数render 也会被重新运行.
 
+## 4-4 React 中 ref 的使用
+帮我们在react 里面直接获取dom 节点.
+```
+<ul ref={(ul)=>{this.ul = ul}}>
+                    {this.getTodoItem()}
+</ul>
+
+
+this.setState((prevState)=>({
+            list:[...prevState.list,prevState.inputValue],
+            inputValue:''
+        }),()=>{
+            console.log(   this.ul.querySelectorAll('div').length);
+});
+```
+
+
 
 
 
