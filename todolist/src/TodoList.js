@@ -4,6 +4,8 @@ import './style.css';
 
 class TodoList extends Component{
 
+    // 当props 和 state 函数发生改变，render 方法会重新执行.
+    // 当父组件的render 方法执行，子组件函数render 也会被重新运行.
     constructor(props){
         super(props);
         this.state = {

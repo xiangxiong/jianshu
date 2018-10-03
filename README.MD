@@ -117,6 +117,11 @@ TodoItem.defaultProps = {
 // 读取英文文档.
 ```
 
+## 4-3 props，state 与 render 函数的关系.
+-.react 数据驱动的框架.
+-.当props 和 state 函数发生改变，render 方法会重新执行.
+-. 当父组件的render 方法执行，子组件函数render 也会被重新运行.
+
 
 
 
