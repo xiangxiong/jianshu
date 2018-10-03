@@ -39,7 +39,6 @@ class TodoList extends Component{
                 value={this.state.inputValue}
                 onChange={this.handleInputChange}
                 /> 
-
                 <button
                 onClick={this.handleBtnClick}
                 >提交</button>
@@ -63,7 +62,6 @@ class TodoList extends Component{
     }
 
     handleBtnClick(){
-
         // es6  最新版本写法
         this.setState((prevState)=>({
             list:[...prevState.list,prevState.inputValue],
@@ -78,7 +76,6 @@ class TodoList extends Component{
     }
 
     handleItemDelete(index){
-
         // 老的写法.
         // immutable 
         // state 不允许我们做任何改变.
@@ -87,7 +84,7 @@ class TodoList extends Component{
         // this.setState({
         //     list:list
         // });
-
+        
         this.setState((prevState)=>{
             const list = [...prevState.list];
             list.splice(index,1);

@@ -40,10 +40,47 @@ handleClick(){
 }
 
 ```
+## 3-6 TodoList 代码优化
+
+1、将bind(this) 函数提取到构造函数中.
+```
+this.handleInputChange = this.handleInputChange.bind(this);
+```
+
+2、复杂的JSX语法要提炼出一个函数.
+```
+    getTodoItem(){
+        return this.state.list.map((item,index)=>{
+            // key 值要放在循环的最外层.
+            return (
+                <TodoItem 
+                key={index}
+                index={index} 
+                content={item}
+                deleteItem={this.handleItemDelete}/>
+           );
+        })
+    }
+```
+
+3、16版react 版本和老版本的写法的对比
+```
+   // es6  最新版本写法
+        this.setState((prevState)=>({
+            list:[...prevState.list,prevState.inputValue],
+            inputValue:''
+        }));
+
+        // 老的写法.
+        // this.setState({
+        //     list:[...this.state.list,this.state.inputValue],
+        //     inputValue:''
+        // });
+```
 
 
 
-
+## 3-7 围绕 React 衍生出的思考
 
 
 
