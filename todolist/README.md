@@ -40,11 +40,7 @@ handleClick(){
 }
 
 ```
-
-
-
-
-
+## 3-6 TodoList 代码优化
 
 
 

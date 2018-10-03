@@ -6,13 +6,14 @@ class TodoItem extends Component{
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
-
     render(){
-        return <div key={this.props.index} onClick={this.handleClick}>{this.props.content}</div>
+        const {content} = this.props;
+        return <div key={this.props.index} onClick={this.handleClick}>{content}</div>
     }
 
     handleClick(){
-        this.props.deleteItem(this.props.index);
+        const {deleteItem,index} = this.props;
+        deleteItem(index);
     }
 }
 

@@ -1,23 +1,35 @@
 import React,{Component,Fragment} from 'react';
-// import styles from './style.css';
-import './style.css';
 import TodoItem from './TodoItem';
+import './style.css';
 
 class TodoList extends Component{
 
     constructor(props){
         super(props);
-
         this.state = {
             inputValue:'dd',
-            list:['学习英文','学习React']
+            list:['学习英文']
         };
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleBtnClick = this.handleBtnClick.bind(this);
+        this.handleItemDelete = this.handleItemDelete.bind(this);
+    }
+
+    getTodoItem(){
+        return this.state.list.map((item,index)=>{
+            // key 值要放在循环的最外层.
+            return (
+                <TodoItem 
+                key={index}
+                index={index} 
+                content={item}
+                deleteItem={this.handleItemDelete}/>
+           );
+        })
     }
 
     render(){
-
-        const {list} = this.state;
-
         return (
             <Fragment>
                 <label htmlFor="insertArea">输入内容:</label>
@@ -25,48 +37,61 @@ class TodoList extends Component{
                 id="insertArea"
                 className="input"
                 value={this.state.inputValue}
-                onChange={this.handleInputChange.bind(this)}
+                onChange={this.handleInputChange}
                 /> 
+
                 <button
-                onClick={this.handleBtnClick.bind(this)}
+                onClick={this.handleBtnClick}
                 >提交</button>
                 <ul>
-                    <TodoItem/>
-                    {
-                        list.map((item,index)=>{
-                            return (<div>
-                                <TodoItem 
-                                index={index} 
-                                content={item}
-                                deleteItem={this.handleItemDelete.bind(this)}/>
-                           </div>);
-                        })
-                    }
+                    {this.getTodoItem()}
                 </ul>
             </Fragment>
         )
     }
 
     handleInputChange(e){
-        this.setState({
-            inputValue:e.target.value
-        });
+        // 老的写法.
+        // this.setState({
+        //     inputValue:e.target.value
+        // });
+        const value = e.target.value;
+        // ES6 最新版本写法
+        this.setState(()=>({
+           inputValue:value
+        }));
     }
 
-    handleBtnClick(e){
-        this.setState({
-            list:[...this.state.list,this.state.inputValue],
+    handleBtnClick(){
+
+        // es6  最新版本写法
+        this.setState((prevState)=>({
+            list:[...prevState.list,prevState.inputValue],
             inputValue:''
-        });
+        }));
+
+        // 老的写法.
+        // this.setState({
+        //     list:[...this.state.list,this.state.inputValue],
+        //     inputValue:''
+        // });
     }
 
     handleItemDelete(index){
+
+        // 老的写法.
         // immutable 
         // state 不允许我们做任何改变.
-        const list = [...this.state.list];
-        list.splice(index,1);
-        this.setState({
-            list:list
+        // const list = [...this.state.list];
+        // list.splice(index,1);
+        // this.setState({
+        //     list:list
+        // });
+
+        this.setState((prevState)=>{
+            const list = [...prevState.list];
+            list.splice(index,1);
+            return {list}
         });
     }
 }
