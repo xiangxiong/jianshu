@@ -77,10 +77,26 @@ this.handleInputChange = this.handleInputChange.bind(this);
         //     inputValue:''
         // });
 ```
-
-
-
 ## 3-7 围绕 React 衍生出的思考
+-1.声明式的开发方式. (react)
+-2.命令式的开发方式. (jquery)
+
+-. 为什么使用单项数据流？
+1、因为子组件有多个的时候，子组件改变state 的时候，
+其他子组件使用了这个state的多会被跟着改变.
+2、所以只能调用父类的方法去改变state.
+-. 视图层的框架(redux,flux)
+-. 组件化.
+-. 数据层的框架.
+-. 函数式编程.
+render().constructor()
+单一职责原则.
+非常容易测试.
+-. 可以与其他框架并存.
+
+
+
+
 
 
 
