@@ -84,7 +84,7 @@ class TodoList extends Component{
         // this.setState({
         //     list:list
         // });
-        
+
         this.setState((prevState)=>{
             const list = [...prevState.list];
             list.splice(index,1);

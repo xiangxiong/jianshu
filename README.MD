@@ -99,6 +99,25 @@ render().constructor()
 2、可以监控组件之间的传值.
 
 
+## 4-2 PropTypes 与 DefaultProps 的应用.
+```
+// 验证是否必填.
+TodoItem.propTypes = {
+    test:PropTypes.string.isRequired,
+    content:PropTypes.string,
+    deleteItem:PropTypes.func,
+    index:PropTypes.number
+}
+
+// 默认属性.
+TodoItem.defaultProps = {
+    test:'hello world'
+}
+
+// 读取英文文档.
+```
+
+
 
 
 
