@@ -323,6 +323,157 @@ export default TodoListUI;
 
 ```
 
+## 6-3 Redux 中发送异步请求获取数据
+```
+    componentDidMount(){
+        // axios.get('/api/list.json')
+        // .then(()=>{
+        //     console.log('sucess');
+        // })
+        const data = ["a","b","c"];
+        const action = initListAction(data);
+        store.dispatch(action);
+    }
+```
+
+## 6-4 使用Redux-thunk 中间件实现ajax数据请求 （反复练习3-5遍）
+1、将复杂的业务逻辑，移入一个地方进行统一管理.
+2、如何使用?
+会执行Action 函数.
+3、将业务数据逻辑移入到action里面.
+4、使得action 里面可以写action 函数. (getTodoList)
+5、redux-thunk 会对 getTodoList 自动执行.
+6、好处：自动化测试的方便.
+```
+componentDidMount(){
+        const action = getTodoList();
+        store.dispatch(action);
+        // console.log(action);
+        // axios.get('/api/list.json')
+        // .then(()=>{
+        //     console.log('sucess');
+        // })
+        // const data = ["a","b","c"];
+        // const action = initListAction(data);
+        // store.dispatch(action);
+}
+
+export const getTodoList = ()=>{
+    return (dispatch)=>{
+           // axios.get('/api/list.json')
+        // .then(()=>{
+        //     console.log('sucess');
+        // })
+          // console.log(data);
+        // const action = initListAction(data);
+        // store.dispatch(action);
+        
+        const data = ["a","b","c"];
+        const action = initListAction(data);
+        dispatch(action);
+    }
+}
+```
+作业: 反复练习3-5遍.
+
+## 6-4 什么是Redux的中间件 
+1、中间件值的是 action 和 store 之间.
+2、是对dispatch方法的封装.
+3、如果是函数，会让函数先执行,在执行后续的操作.
+4、对dispatch方法的升级，之前只能操作对象，现在能操作函数.
+5、将异步操作单独抽离出来.利于自动化测试.
+6、对dispatch 方法的升级.
+
+## 6-6 Redux-saga 中间件使用入门
+1.来代替redux-thunk.
+redux-saga 会拦截action 执行相应的异步函数.
+2、异步代码拆分的流程.
+3、将异步代码拆分到一个文件里面管理.
+
+## 如何使用 React-redux （反复练习3-5遍）
+1、下面这样写是把store 提供给下面的所有的组件了.
+2、Provider 去连接store.
+```
+  <Provider store={store}>
+        <TodoList/>
+    </Provider>
+```
+3、怎么获取store？
+是通过connect 方法来获取的.
+connect 方法是做连接，做什么连接？
+让组件和store 做连接.
+要有一定的链接方式:
+
+```
+import React,{Component} from 'react';
+import {connect} from 'react-redux';
+
+class TodoList extends Component{
+
+    constructor(props){
+        super(props);
+        this.state = store.getState();
+        this.handleChangeClick = this.handleChangeClick.bind(this);
+    }
+
+    handleChangeClick(e){
+        console.log(e.target.value);
+    }
+
+    render(){
+        return (
+            <div>
+                <div>
+                    <input 
+                    value={this.props.inputValue}
+                    onChange={this.props.changeInputValue}/>
+                    <button>提交</button>
+                </div>
+                <ul>
+                    <li>Dell</li>
+                </ul>
+            </div>
+         )
+    }
+}
+
+// 我让TodoList和store 做连接，规则是mapStateToProps，把store 里面数据映射成组件里面属性，变成组件里面的Props.
+// state 就是指store里面的数据.
+const mapStateToProps = (state)=>{
+    return {
+        inputValue:state.inputValue
+    }
+}
+
+// 意思是: 我让TodoList和store 做连接，规则是mapStateToProps把store 里面数据映射成组件里面属性,
+// 同时我想对store 里面的数据做修改, 也可以通过store的props 来做修改.
+// mapDispatch = store.dispatch ,props
+const mapDispatchToProps = (dispatch) =>{
+    return {
+        changeInputValue(e){
+            const action = {
+                type:'change_input_value',
+                value:e.target.value
+            };
+            dispatch(action);
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(TodoList);
+
+
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
