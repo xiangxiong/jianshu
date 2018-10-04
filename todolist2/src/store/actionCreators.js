@@ -1,4 +1,4 @@
-import {CHANGE_INPUT_VALUE,PUSH_CHANGE_LIST,DELETE_LIST_ITEM,INIT_LIST_ACTION} from './actionTypes';
+import {CHANGE_INPUT_VALUE,GET_INIT_LIST,PUSH_CHANGE_LIST,DELETE_LIST_ITEM,INIT_LIST_ACTION} from './actionTypes';
 
 export const getInputChangeAction = (value) =>({
     type:CHANGE_INPUT_VALUE,
@@ -19,6 +19,11 @@ export const initListAction = (data) =>({
     data
 });
 
+export const getInitList = ()=>({
+    type:GET_INIT_LIST
+});
+
+// reudx-thunk.
 export const getTodoList = ()=>{
     return (dispatch)=>{
            // axios.get('/api/list.json')
@@ -33,3 +38,4 @@ export const getTodoList = ()=>{
         dispatch(action);
     }
 }
+

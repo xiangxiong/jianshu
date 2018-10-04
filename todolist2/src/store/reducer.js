@@ -1,4 +1,4 @@
-import {CHANGE_INPUT_VALUE,PUSH_CHANGE_LIST,DELETE_LIST_ITEM, INIT_LIST_ACTION} from './actionTypes';
+import {GET_INIT_LIST,CHANGE_INPUT_VALUE,PUSH_CHANGE_LIST,DELETE_LIST_ITEM, INIT_LIST_ACTION} from './actionTypes';
 
 const defaultState = {
     inputValue:'',
@@ -24,6 +24,10 @@ export default (state=defaultState,action)=>{
     if(action.type === INIT_LIST_ACTION){
         const newState = JSON.parse(JSON.stringify(state));
         newState.list = action.data;
+        return newState;
+    }
+    if(action.type === GET_INIT_LIST){
+        const newState = JSON.parse(JSON.stringify(state));
         return newState;
     }
     return state;

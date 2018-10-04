@@ -4,4 +4,6 @@ export const PUSH_CHANGE_LIST = 'push_change_list';
 
 export const DELETE_LIST_ITEM = 'delete_list_item';
 
-export const INIT_LIST_ACTION = 'init_list_action'
+export const INIT_LIST_ACTION = 'init_list_action';
+
+export const GET_INIT_LIST = 'get_init_list';
