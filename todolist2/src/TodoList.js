@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import store from './store'
-import {getInputChangeAction,getAddItemAction,getDeleteItemAction} from './store/actionCreators';
+import {getInputChangeAction,getAddItemAction,getDeleteItemAction,getTodoList} from './store/actionCreators';
 import TodoListUI from './TodoListUI';
 
 class TodoList extends Component{
@@ -44,6 +44,19 @@ class TodoList extends Component{
             handleListClick = {this.handleListClick}
             list = {this.state.list}
         />
+    }
+
+    componentDidMount(){
+        const action = getTodoList();
+        store.dispatch(action);
+        // console.log(action);
+        // axios.get('/api/list.json')
+        // .then(()=>{
+        //     console.log('sucess');
+        // })
+        // const data = ["a","b","c"];
+        // const action = initListAction(data);
+        // store.dispatch(action);
     }
 }
 
