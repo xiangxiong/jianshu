@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
-import {connect} from 'react-redux';
+import store from './store';
+import {CHANGE_INPUT_VALUE,INIT_TODO_LIST} from './store/actionTypes';
+import {changeInputValue,getTodoList} from './store/actionCreators';
 
 class TodoList extends Component{
 
@@ -7,53 +9,54 @@ class TodoList extends Component{
         super(props);
         this.state = store.getState();
         this.handleChangeClick = this.handleChangeClick.bind(this);
+        this.handleChangeState = this.handleChangeState.bind(this);
+        this.handleAddTodoItem = this.handleAddTodoItem.bind(this);
+        store.subscribe(this.handleChangeState);
+    }
+
+    getList(){
+        return  this.state.list.map((item,key)=>{
+            return  (<ul key={key}>
+                <li>{item}</li>
+            </ul>)
+        })
     }
 
     handleChangeClick(e){
-        console.log(e.target.value);
+        const action = changeInputValue(e.target.value);
+        store.dispatch(action);
+    }
+
+    handleChangeState(){
+        this.setState(()=>{
+            return store.getState();
+        });
+    }
+
+    handleAddTodoItem(){
+        const action = {
+            type:'add_todo_item'
+        };
+        store.dispatch(action);
+    }
+
+    componentDidMount(){
+        const action = getTodoList();
+        store.dispatch(action);
     }
 
     render(){
-        return (
+        return (<div>
             <div>
-                <div>
-                    <input 
-                    value={this.props.inputValue}
-                    onChange={this.props.changeInputValue}/>
-                    <button>提交</button>
-                </div>
-                <ul>
-                    <li>Dell</li>
-                </ul>
+                <input
+                value={this.state.inputValue}
+                onChange={this.handleChangeClick}/>
+                <button onClick={this.handleAddTodoItem}>提交</button>
             </div>
-         )
+            {
+               this.getList()
+            }
+        </div>)
     }
 }
-
-// 我让TodoList和store 做连接，规则是mapStateToProps，把store 里面数据映射成组件里面属性，变成组件里面的Props.
-// state 就是指store里面的数据.
-const mapStateToProps = (state)=>{
-    return {
-        inputValue:state.inputValue
-    }
-}
-
-// 意思是: 我让TodoList和store 做连接，规则是mapStateToProps把store 里面数据映射成组件里面属性,
-// 同时我想对store 里面的数据做修改, 也可以通过store的props 来做修改.
-// mapDispatch = store.dispatch ,props
-const mapDispatchToProps = (dispatch) =>{
-    return {
-        changeInputValue(e){
-            const action = {
-                type:'change_input_value',
-                value:e.target.value
-            };
-            dispatch(action);
-        }
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(TodoList);
-
-
-
+export default TodoList;
