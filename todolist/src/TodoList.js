@@ -1,5 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import TodoItem from './TodoItem';
+import axios from 'axios';
 import './style.css';
 
 class TodoList extends Component{
@@ -29,10 +30,11 @@ class TodoList extends Component{
                 content={item}
                 deleteItem={this.handleItemDelete}/>
            );
-        })
+        });
     }
 
     render(){
+        console.log('parent render');
         return (
             <Fragment>
                 <label htmlFor="insertArea">输入内容:</label>
@@ -42,15 +44,25 @@ class TodoList extends Component{
                 value={this.state.inputValue}
                 onChange={this.handleInputChange}
                 ref={(input)=>{this.input = input}}
-                /> 
+                />
                 <button
                 onClick={this.handleBtnClick}
                 >提交</button>
-                <ul ref={(ul)=>{this.ul = ul}}>
+                <ul>
                     {this.getTodoItem()}
                 </ul>
             </Fragment>
         )
+    }
+
+    componentDidMount(){
+        axios.get('/api/todolist')
+        .then(()=>{
+            alert('succ');
+        })
+        .catch(()=>{
+            alert('error');
+        })
     }
 
     handleInputChange(e){
@@ -74,10 +86,8 @@ class TodoList extends Component{
         this.setState((prevState)=>({
             list:[...prevState.list,prevState.inputValue],
             inputValue:''
-        }),()=>{
-            console.log(   this.ul.querySelectorAll('div').length);
-        });
-        
+        }));
+
         // 老的写法.
         // this.setState({
         //     list:[...this.state.list,this.state.inputValue],

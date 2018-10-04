@@ -8,16 +8,24 @@ class TodoItem extends Component{
         this.handleClick = this.handleClick.bind(this);
     }
 
+    // setState 降低虚拟dom 的比对次数.
+    shouldComponentUpdate(nextProps,nextState){
+        if(nextProps.content!==this.props.content){
+            return true;
+        }
+        return false;
+    }
+
     render(){
+        console.log('child render');
         const {content,test} = this.props;
         return <div key={this.props.index} onClick={this.handleClick}>
-         {test}{content}
+          {content}
         </div>
     }
 
     handleClick(){
         const {deleteItem,index} = this.props;
-
         deleteItem(index);
     }
 }
@@ -34,4 +42,5 @@ TodoItem.propTypes = {
 TodoItem.defaultProps = {
     test:'hello world'
 }
+
 export default TodoItem;

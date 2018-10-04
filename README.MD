@@ -124,11 +124,11 @@ TodoItem.defaultProps = {
 
 ## 4-4 React 中 ref 的使用
 帮我们在react 里面直接获取dom 节点.
+查看官方文档.
 ```
 <ul ref={(ul)=>{this.ul = ul}}>
                     {this.getTodoItem()}
 </ul>
-
 
 this.setState((prevState)=>({
             list:[...prevState.list,prevState.inputValue],
@@ -137,6 +137,86 @@ this.setState((prevState)=>({
             console.log(   this.ul.querySelectorAll('div').length);
 });
 ```
+
+## 4-4 React 生命周期函数 及 使用场景.
+-. 生命周期指在某一个时刻会自动调用执行的函数.
+
+-. shouldComponentUpdate
+
+```
+   // 组件没有参数不会被执行.
+   // 当一个组件从父组件接收参数,
+   // 只要父组件的render函数执行了,子组件的这个生命周期就会被执行.
+   componentWillReceiveProps(){
+        console.log("componentWillReceiveProps");
+    }
+
+    shouldComponentUpdate(){
+        console.log('shouldComponentUpdate');
+        return true;
+    }
+
+    // 组件被更新之前，会被自动执行. shouldComponentUpdate 之后.
+    // shouldComponentUpdate 返回true 执行, 返回 false 不执行.
+    componentWillUpdate(){
+        console.log("componentWillUpdate");
+    }
+
+    // 组件更新完成之后，被执行.
+    componentDidUpdate(){
+        console.log("componentDidUpdate");
+    }
+
+    // 组件没有参数不会被执行.
+    componentWillReceiveProps(){
+        console.log("componentWillReceiveProps");
+    }
+
+```
+
+## 4-9 使用Charles实现本地数据mock
+-. 
+
+
+## React 的Css 过渡效果.
+-. 使用 react-transition-group 实现动画
+
+-. React 的Css 过渡效果
+
+
+## 5-1 Redux 概念简述
+Redux = reducer + flux.
+
+## 5-2 Redux 的工作流程
+
+## 5-4 创建 redux 中的 store_x264(
+-. 
+```
+reducer.js
+const defaultState = {
+    inputValue:'123',
+    list:[1,2]
+};
+
+export default (state=defaultState,action)=>{
+    return state;
+}
+
+store.js
+import {createStore} from 'redux';
+import reducer from './reducer';
+
+const store = createStore(reducer);
+
+export default store;
+```
+## 5-5 Action 和 Reducer 的编写.
+
+## 5-7 ActionTypes 拆分.
+
+
+
+
 
 
 
