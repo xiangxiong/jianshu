@@ -13,7 +13,7 @@ export default (state=defaultState,action)=>{
     }
     if(action.type === PUSH_CHANGE_LIST){
         const newState = JSON.parse(JSON.stringify(state));
-        newState.list.push(action.value);
+        newState.list.push(newState.inputValue);
         return newState;
     }
     if(action.type === DELETE_LIST_ITEM){

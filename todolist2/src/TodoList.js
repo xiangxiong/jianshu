@@ -2,7 +2,7 @@ import React,{Component,Fragment} from 'react';
 import 'antd/dist/antd.css';
 import { Input,Button,List } from 'antd';
 import store from './store'
-import {CHANGE_INPUT_VALUE,PUSH_CHANGE_LIST,DELETE_LIST_ITEM} from './store/actionTypes';
+import {getInputChangeAction,getAddItemAction,getDeleteItemAction} from './store/actionCreators';
 
 class TodoList extends Component{
 
@@ -15,11 +15,27 @@ class TodoList extends Component{
         store.subscribe(this.handleStateChange);
     }
 
+    handleButtonClick(){
+        const action = getAddItemAction()
+        store.dispatch(action);
+    }
+
     handleChangeValue(e){
-        const action = {
-            type:CHANGE_INPUT_VALUE,
-            value:e.target.value
-        }
+        // const action = {
+        //     type:CHANGE_INPUT_VALUE,
+        //     value:e.target.value
+        // }
+
+        const action = getInputChangeAction(e.target.value);
+        store.dispatch(action);
+    }
+
+    handleListClick(index){
+        // const action = {
+        //     type:DELETE_LIST_ITEM,
+        //     index:index
+        // }
+        const action  = getDeleteItemAction(index);
         store.dispatch(action);
     }
 
@@ -27,22 +43,6 @@ class TodoList extends Component{
         this.setState(()=>{
             return store.getState();
         })
-    }
-
-    handleButtonClick(){
-        const action = {
-            type:PUSH_CHANGE_LIST,
-            value:this.state.inputValue
-        }
-        store.dispatch(action);
-    }
-
-    handleListClick(index){
-        const action = {
-            type:DELETE_LIST_ITEM,
-            index:index
-        }
-        store.dispatch(action);
     }
 
     render(){

@@ -223,6 +223,7 @@ export const DELETE_LIST_ITEM = 'delete_list_item';
 ```
 
 ## 5-8 使用 actionCreator 统一创建 action
+
 ```
 
 
