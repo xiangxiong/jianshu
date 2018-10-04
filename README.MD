@@ -225,9 +225,32 @@ export const DELETE_LIST_ITEM = 'delete_list_item';
 ## 5-8 使用 actionCreator 统一创建 action
 
 ```
+import {CHANGE_INPUT_VALUE,PUSH_CHANGE_LIST,DELETE_LIST_ITEM} from './actionTypes';
 
+export const getInputChangeAction = (value) =>({
+    type:CHANGE_INPUT_VALUE,
+    value
+});
+
+export const getAddItemAction = () =>({
+    type:PUSH_CHANGE_LIST
+});
+
+export const getDeleteItemAction = (index) =>({
+    type:DELETE_LIST_ITEM,
+    index
+});
 
 ```
+
+## 5-9 知识点复习
+-.1. store 必须是唯一的.
+-.2. 只有store 才能改变自己的内容.
+-.3. Reducer 必须是纯函数.(给固定的输入，就一定会固定的输出. 不会有任何副作用.)
+-.4. createStore,store.dipatch,store.getState,store.subscribe.
+
+
+
 
 
 
