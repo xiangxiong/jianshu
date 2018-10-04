@@ -213,6 +213,20 @@ export default store;
 ## 5-5 Action 和 Reducer 的编写.
 
 ## 5-7 ActionTypes 拆分.
+```
+export const CHANGE_INPUT_VALUE = 'change_input_value';
+
+export const PUSH_CHANGE_LIST = 'push_change_list';
+
+export const DELETE_LIST_ITEM = 'delete_list_item';
+
+```
+
+## 5-8 使用 actionCreator 统一创建 action
+```
+
+
+```
 
 
 
