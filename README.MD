@@ -465,6 +465,40 @@ export default connect(mapStateToProps,mapDispatchToProps)(TodoList);
 
 ```
 
+## 7-1 项目目录搭建，Styled-Components 与 Reset.css 的结合使用
+-. styled-components 使用
+-. 重置 css 
+https://meyerweb.com/eric/tools/css/reset/
+```
+import {injectGlobal} from 'styled-components';
+
+injectGlobal `
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .dell{
+    background: red;
+  }
+
+```
+
+# 7-2 使用 styled-components 完成 Header 组件布局（1）
+-. 1、实现带样式的组件.
+-. 2、对组件样式进行隔离.
+
+# 7-4 使用 iconfont 嵌入头部图标
+
+
+
+
+
 
 
 

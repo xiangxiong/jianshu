@@ -16,7 +16,7 @@ const TodoList = (props) =>{
         {
            list.map((item,index)=>{
             return (<li onClick={handleDelete(index)}>{item}</li>)
-         })
+           })
         }
         </ul>
     </Fragment>)
