@@ -243,11 +243,55 @@ export const getDeleteItemAction = (index) =>({
 
 ```
 
-## 5-9 知识点复习
+## 5-9 Redux 知识点复习
 -.1. store 必须是唯一的.
 -.2. 只有store 才能改变自己的内容.
 -.3. Reducer 必须是纯函数.(给固定的输入，就一定会固定的输出. 不会有任何副作用.)
 -.4. createStore,store.dipatch,store.getState,store.subscribe.
+
+## 6-1 UI组件和容器组件
+1、业务组件和逻辑进行分离。
+拆分成 TodoList,TodoListUi.js
+核心代码:
+TodoList
+```
+ render(){
+        return  <TodoListUI 
+            inputValue={this.state.inputValue}
+            handleChangeValue = {this.handleChangeValue}
+            handleButtonClick = {this.handleButtonClick}
+            handleListClick = {this.handleListClick}
+            list = {this.state.list}
+        />
+    }
+
+```
+TodoListUi.js
+```
+render(){
+        return <Fragment>
+        <div style={{margin:10}}>
+          <div>
+          <Input 
+          placeholder="Basic usage" 
+          value={this.props.inputValue}
+          onChange={this.props.handleChangeValue}
+          style={{width:300,marginRight:10}}
+          />
+             <Button type="primary" onClick={this.props.handleButtonClick}>提交</Button>
+          </div>
+          <List
+            style={{marginTop:'30px',width:'300px'}}
+            bordered
+            dataSource={this.props.list}
+            renderItem={(item,index) => (<List.Item  onClick={(index)=>{this.props.handleListClick(index)}}>{item}</List.Item>)}
+            />
+        </div>
+    </Fragment>
+    }
+```
+
+
 
 
 
