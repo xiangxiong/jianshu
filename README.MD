@@ -291,6 +291,40 @@ render(){
     }
 ```
 
+## 6-2 无状态组件
+1、当一个组件只有render函数的时候可以用无状态组件来替换这个组件.
+2、优势：性能比较高. 还有生命周期函数.
+3、定义一个UI组件的时候，没有逻辑的组件. 可以替换.
+
+```
+const TodoListUI = (props)=>{
+    return (<Fragment>
+        <div style={{margin:10}}>
+        <div>
+        <Input 
+        placeholder="Basic usage" 
+        value={props.inputValue}
+        onChange={props.handleChangeValue}
+        style={{width:300,marginRight:10}}
+        />
+            <Button type="primary" onClick={props.handleButtonClick}>提交</Button>
+        </div>
+        <List
+            style={{marginTop:'30px',width:'300px'}}
+            bordered
+            dataSource={props.list}
+            renderItem={(item,index) => (<List.Item  onClick={(index)=>{props.handleListClick(index)}}>{item}</List.Item>)}
+            />
+        </div>
+    </Fragment>)
+}
+
+export default TodoListUI;
+
+```
+
+
+
 
 
 
