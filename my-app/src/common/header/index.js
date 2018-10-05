@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 const Header = (props) =>{
     const {focused,handleRegisterClick} = props;
+    console.log(focused);
     return (
         <HeaderWrapper>
             <Logo href="/"/>
@@ -29,7 +30,7 @@ const Header = (props) =>{
 
 const mapStateToProps = (state)=>{
     return {
-        focused:state.focused
+        focused:state.header.focused
     }
 }
 
