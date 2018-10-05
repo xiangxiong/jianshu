@@ -653,6 +653,43 @@ export const seachFoucus = (value)=>{
 import {actionCreators} from './store';
 ```
 
+## 7-9 使用 Immutable.js 来管理store中的数据
+* 不要对原来的state进行修改.(不改变原来store的数据).
+* immutable.js immutable 对象.
+* immutable 对象的set方法,会结合之前immutable对象的值和设置的值，返回一个全新的对象.
+* 如何使用 设置 state.set('focused',true); 读取: state.header.get('focused')
+```  
+yarn add immutable
+import {fromJS} from 'immutable';
+
+const defaultState = fromJS({
+    focused:false
+});
+
+
+export default (state=defaultState,action)=>{
+    if(action.type === actionTypes.USER_REGISTER_ACTION){
+        // const newState = JSON.parse(JSON.stringify(state));
+        // newState.focused = action.focused;
+        // return newState;
+        // immutable 对象的set方法,会结合之前 immutable 对象的值.
+        // 和设置的值, 返回一个全新的对象.
+        return state.set('focused',true);
+    }
+    return state;
+}
+
+```
+* 如何取数据.
+```
+const mapStateToProps = (state)=>{
+    return {
+        focused:state.header.get('focused')
+    }
+}
+```
+
+
 
 
 
