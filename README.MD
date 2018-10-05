@@ -708,6 +708,19 @@ const mapStateToProps = (state)=>{
 *  2、如何将传入reducer 中的data 也变成 immutable 对象, fromJS(data);
 *  3、mock 数据也可以写在 public 目录下面.
 
+# 7-13 代码优化微调
+* 将 if 替换成 switch case
+* 将 props 进行解构赋值.
+
+# 7-14 热门搜索换页功能实现
+*. 注意点: 在reducer 中如果需要改变多个state 的值，可以使用 state.merge({}) 方法.
+```
+state.set('list',action.data).set('totalPage',action.totalPage)
+
+
+
+```
+
 
 
 
