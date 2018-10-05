@@ -658,6 +658,7 @@ import {actionCreators} from './store';
 * immutable.js immutable 对象.
 * immutable 对象的set方法,会结合之前immutable对象的值和设置的值，返回一个全新的对象.
 * 如何使用 设置 state.set('focused',true); 读取: state.header.get('focused')
+* https://github.com/facebook/immutable-js 
 ```  
 yarn add immutable
 import {fromJS} from 'immutable';
@@ -688,6 +689,24 @@ const mapStateToProps = (state)=>{
     }
 }
 ```
+
+## 7-10 使用 redux-immutable 统一数据格式
+*  redux-immutable 提供了combineReducers方法, 
+*  reducer 可变成了 immutable 对象.
+*  主要是为了解决对象类型不统一的问题. 
+*  state.header.get('focused'); 方法.
+*  state 为js 对象,state.header 为 immutable 对象
+*  focused:state.getIn(['header','focused'])
+
+
+## 7-12 Ajax获取推荐数据
+*  什么是UI组件，什么是无状态组件，这个要区分一下.
+*  什么是高阶函数.
+*  如何正确的使用redux-thunk?
+*  主要有以下几个关键点:
+*  1、如何将异步业务请求拆分到actionCreators.js 中.引入 redux-thunk 中间件.
+*  2、如何将传入reducer 中的data 也变成 immutable 对象, fromJS(data);
+*  3、mock 数据也可以写在 public 目录下面.
 
 
 
