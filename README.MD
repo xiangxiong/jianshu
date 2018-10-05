@@ -733,6 +733,22 @@ state.set('list',action.data).set('totalPage',action.totalPage)
 *  如何配置，是根据url路径来匹配的,匹配上就把对应的路由显示出来.
 *  精确匹配使用  exact.
 
+# 8-2 首页组件的拆分.
+*  可复用，能继承，要完整.
+*  每个页面的样式自己单独维护. 建立独立的文件夹.
+*  将页面拆分成组件,新建component 文件夹,将组件放入到文件夹中.
+
+#  首页专题区域布局及reducer的设计
+*  将Component 替换成 PureComponent. 提升性能, 相当于 shouldComponentUpdate();
+*  PureComponent 建议使用 immutable.js.
+*  页面跳转. link to 标签.
+*  登录验证.
+*  代码优化：reducer 里面代码处理较多的情况下，可以提炼代码. 
+*  异步的catch 逻辑代码.
+*  异步组件及withRouter 路由方法.
+*  react-loadable  https://github.com/jamiebuilds/react-loadable 
+*  异步加载页面，路由配置加载异步组件.
+
 
 
 
