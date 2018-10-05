@@ -717,10 +717,21 @@ const mapStateToProps = (state)=>{
 ```
 state.set('list',action.data).set('totalPage',action.totalPage)
 
-
+ return state.merge({
+                list:action.data,
+                totalPage:action.totalPage
+ });
 
 ```
 
+# 7-15 7-16 避免无意义的请求发送，提升组件性能
+*  注意学习ES6 的箭头函数.
+*  判断首次加载数据list.size === 0.
+
+# 8-1 什么是路由，如何在React中使用路由功能
+*  最新版本的路由是 react-router-dom.
+*  如何配置，是根据url路径来匹配的,匹配上就把对应的路由显示出来.
+*  精确匹配使用  exact.
 
 
 
