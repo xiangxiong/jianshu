@@ -1,6 +1,7 @@
 import React from 'react';
 import {HeaderWrapper,Logo,Nav,NavItem,NavSearch,Addition,Button,SearchWrapper} from './style';
 import {connect} from 'react-redux';
+import {actionCreators} from './store';
 
 const Header = (props) =>{
     const {focused,handleRegisterClick} = props;
@@ -37,11 +38,7 @@ const mapStateToProps = (state)=>{
 const mapDispatchToProps = (dispatch)=>{
     return {
         handleRegisterClick(){
-            const action = {
-                type:'user_register_action',
-                focused:true
-            };
-            dispatch(action);
+            dispatch(actionCreators.seachFoucus(true));
         }
     }
 }

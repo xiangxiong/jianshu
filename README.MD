@@ -610,7 +610,7 @@ const Header = (props) =>{
  *  focused:state.focused => focused:state.header.focused
  *  把其他的reducer 建立在其他的 组件下面去. store/reducer.js
  *  精简代码可以在store下面建立index.js
- 
+
 ```
 import {combineReducers} from 'redux';
 import {reducer as headerReducer} from '../common/header/store/';
@@ -633,6 +633,11 @@ export default reducer;
 
 ```
 
+## 7-7 actionCreators 与 constants 的拆分.
+* 1. 新建actionCreators文件将action 的行为单独抽出来放入到一个文件. actionCreator.js
+* 2. 在将action.type 方法抽离出来放入到一个统一管理的地方，方便维护. contants.js
+* 3. 为了减少长度的引用，统一在store 的目录下新建一个index.js文件. 将actionCreator，contants，reducer 文件统一放入到这里来管理。 在外面应用的时候，直接导入/store 就可以了。
+* 4. 将文件里面的方法统一导出来 import * as actionCreateor from './contants';
 
 
 
