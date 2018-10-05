@@ -639,6 +639,20 @@ export default reducer;
 * 3. 为了减少长度的引用，统一在store 的目录下新建一个index.js文件. 将actionCreator，contants，reducer 文件统一放入到这里来管理。 在外面应用的时候，直接导入/store 就可以了。
 * 4. 将文件里面的方法统一导出来 import * as actionCreateor from './contants';
 
+```
+import * as actionTypes from './constants';
+
+export const seachFoucus = (value)=>{
+    return {
+        type: actionTypes.USER_REGISTER_ACTION,
+        focused:value
+    }
+}
+
+引用
+import {actionCreators} from './store';
+```
+
 
 
 
